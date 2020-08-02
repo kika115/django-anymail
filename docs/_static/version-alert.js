@@ -1,7 +1,7 @@
 "use strict";
 
 // Similar to https://github.com/rtfd/readthedocs.org/blob/master/readthedocs/core/static-src/core/js/doc-embed/version-compare.js
-// but adds admonition for the "latest" version -- which is (unreleased) master branch.
+// but adds admonition for the "latest" version -- which is (unreleased) main branch.
 
 function warnOnLatestVersion() {
 
@@ -27,4 +27,8 @@ function warnOnLatestVersion() {
   parent.insertBefore(warning, parent.firstChild);
 }
 
-document.addEventListener('DOMContentLoaded', warnOnLatestVersion);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', warnOnLatestVersion);
+} else {
+  warnOnLatestVersion();
+}
